@@ -28,4 +28,12 @@ export class Library {
     }
     book.isAvailable = false;
   }
+
+  returnBook(isbn: string): void {
+    const book = this.books.find((book) => book.isbn === isbn);
+    if (!book || book.isAvailable) {
+      throw new Error("Book is not borrowed");
+    }
+    book.isAvailable = true;
+  }
 }
