@@ -20,4 +20,12 @@ export class Library {
   viewAvailableBooks(): Book[] {
     return this.books.filter((book) => book.isAvailable);
   }
+
+  borrowBook(isbn: string): void {
+    const book = this.books.find((book) => book.isbn === isbn);
+    if (!book || !book.isAvailable) {
+      throw new Error("Book is not available");
+    }
+    book.isAvailable = false;
+  }
 }
