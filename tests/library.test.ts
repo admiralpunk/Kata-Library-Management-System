@@ -44,6 +44,20 @@ describe("Library Management System", () => {
       "Book is not available"
     );
   });
+
+  // tests/library.test.ts
+  test("should allow a user to return a borrowed book", () => {
+    library.addBook(
+      "123456789",
+      "The Great Gatsby",
+      "F. Scott Fitzgerald",
+      1925
+    );
+    library.borrowBook("123456789");
+    library.returnBook("123456789");
+    const books = library.viewAvailableBooks();
+    expect(books.length).toBe(1); // Book should be available after return
+  });
 });
 
 
